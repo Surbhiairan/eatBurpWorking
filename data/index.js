@@ -62,7 +62,9 @@ const breweries = [
     "beers":[
 
     ],
-    "rating":"?"
+    "rating":"?",
+    "menuImages": "./images/menu/menu1.png",
+    
   },
   {
     "id": 2,
@@ -186,7 +188,11 @@ const breweries = [
     "beers":[
 
     ],
-    "rating":"?"
+    "rating":"?",
+    "menuImages": [
+      require('../data/images/menu/menu1.png'),
+      require('../data/images/menu/menu2.png'),
+    ],    
   },
   {
     "id": 4,

@@ -21,6 +21,7 @@ import {
   SummaryCard,
   InstagramPhotosCard,
   VisitedCard,
+  MenuPhotosCard,
 } from './DetailCards';
 import formatTime from '../util/formatTime';
 import Layout from '../constants/Layout';
@@ -57,6 +58,7 @@ export default class BreweryDetails extends React.Component {
               <SummaryCard text={brewery.summary} />
               <DescriptionCard text={brewery.description} />
               <InstagramPhotosCard profile={brewery.instagram} />
+              <MenuPhotosCard menuImages={brewery.menuImages}/>
               <VisitedCard breweryId={this.props.brewery.id} />
             </View>
           </Animated.ScrollView>

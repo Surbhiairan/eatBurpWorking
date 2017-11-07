@@ -33,6 +33,7 @@ type BreweryData = {
   social_instagram: string,
   summary?: ?string,
   title: string,
+  menuImages: [],
 }
 
 export default function transformBrewery(brewery: BreweryData, currentDate = new Date()): any {
@@ -72,5 +73,6 @@ export default function transformBrewery(brewery: BreweryData, currentDate = new
     postalCode: brewery.postal_code.split(' ').join('').toUpperCase(),
     smallLogo: brewery.logo_small,
     summary: brewery.summary,
+    menuImages: brewery.menuImages,
   };
 }

@@ -11,7 +11,7 @@
     "icon": "./icon.jpeg",
     "splash": {
       "backgroundColor": "#ff8342",
-      "image": "./splash.jpeg",
+      "image": "./splash.png",
       "resizeMode": "contain"
     },
     "android": {

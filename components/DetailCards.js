@@ -18,11 +18,15 @@ import TouchableNativeFeedback from '@expo/react-native-touchable-native-feedbac
 import { MapView } from 'expo';
 import { openImageGallery } from '@expo/react-native-image-gallery';
 import { MaterialIcons } from '@expo/vector-icons';
+import { List } from 'immutable';
+
 
 import Actions from '../state/Actions';
 import { RegularText, BoldText } from './StyledText';
 import Layout from '../constants/Layout';
 import Colors from '../constants/Colors';
+import { AllBreweries } from "../data";
+import { Brewery, User } from '../state/Records';
 
 export class DescriptionCard extends React.Component {
   render() {
@@ -154,7 +158,6 @@ export class InstagramPhotosCard extends React.Component {
 class InstagramPhoto extends React.Component {
   render() {
     let { item } = this.props;
-
     return (
       <TouchableWithoutFeedback onPress={this._handlePress}>
         <View>
@@ -175,6 +178,78 @@ class InstagramPhoto extends React.Component {
 
   _handlePress = () => {
     let { item, list } = this.props;
+    console.log("instagramItem-------", item);
+    
+    this._view.measure((rx, ry, w, h, x, y) => {
+      openImageGallery({
+        animationMeasurements: { w, h, x, y },
+        list,
+        item,
+      });
+    });
+  };
+}
+
+export class MenuPhotosCard extends React.Component {
+  state = {
+    images: null,
+  };
+
+  render() {
+    return (
+      <View>
+        <View style={styles.cardLabel} collapsible={false}>
+          <BoldText style={styles.cardLabelText}>
+            Menu Images
+          </BoldText>
+        </View>
+        {this._renderMenuPhotos()}
+      </View>
+    );
+  }
+
+  _renderMenuPhotos() {
+    let { menuImages } = this.props;
+    console.log("menu image-------------", this.props);
+    
+    return (
+      <View style={styles.card}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {menuImages.map((menu, i) => 
+            <MenuPhoto key={i} item={menu} list={menuImages}/>
+          )}
+
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+class MenuPhoto extends React.Component {
+  render() {
+    let { item } = this.props;
+
+    return (
+      <TouchableWithoutFeedback onPress={this._handlePress}>
+        <View>
+          <FadeIn>
+            <Image
+              ref={view => {
+                this._view = view;
+              }}
+              source={item}
+              resizeMode="cover"
+              style={styles.instagramImage}
+            />
+          </FadeIn>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
+
+  _handlePress = () => {
+    let { item, list } = this.props;
+    console.log("items----------------------", item);
 
     this._view.measure((rx, ry, w, h, x, y) => {
       openImageGallery({
